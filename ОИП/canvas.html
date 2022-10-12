@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<title>Canvas</title>
+	</head>
+	<body>
+		<canvas id="myCanvas" with="200" height="200">
+		</canvas>
+		<script type="text/javascript">
+			// set center (x, y), r_outside, r_inside 
+			const x = 20 + 40 + 43
+			const y = x - 10
+			const r_outside = y - 10
+			const r_inside = r_outside / 2
+			const x_sub = Math.sqrt(Math.pow(r_outside, 2) - Math.pow(r_inside,2))
+
+			// set canvas
+			var canvas = document.getElementById("myCanvas")
+			var ctx = canvas.getContext("2d")
+
+			// outside circle
+			ctx.beginPath()
+			ctx.arc(x, y, r_outside, 0 , 2 * Math.PI)
+			ctx.strokeStyle = '#0000FF' // blue
+			ctx.stroke()
+
+			// inside circle
+			ctx.beginPath()
+			ctx.arc(x, y, r_inside, 0 , 2 * Math.PI)
+			ctx.strokeStyle = '#FF0000' // red
+			ctx.stroke()
+
+			// tringle 
+			ctx.beginPath()
+			ctx.strokeStyle = '#000000' // black
+			ctx.moveTo(x, y - r_outside)
+			ctx.lineTo(x - x_sub, y + r_inside)
+			ctx.lineTo(x + x_sub, y + r_inside)
+			ctx.closePath()
+			ctx.stroke()
+		</script>
+	</body>
+</html>
